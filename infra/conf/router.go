@@ -532,6 +532,7 @@ func parseFieldRule(msg json.RawMessage) (*router.RoutingRule, error) {
 		InboundTag *StringList       `json:"inboundTag"`
 		Protocols  *StringList       `json:"protocol"`
 		Attributes map[string]string `json:"attrs"`
+		Tag        string       `json:"tag"`
 	}
 	rawFieldRule := new(RawFieldRule)
 	err := json.Unmarshal(msg, rawFieldRule)
@@ -542,8 +543,8 @@ func parseFieldRule(msg json.RawMessage) (*router.RoutingRule, error) {
 	rule := new(router.RoutingRule)
 	switch {
 	case len(rawFieldRule.OutboundTag) > 0:
-		rule.TargetTag = &router.RoutingRule_Tag{
-			Tag: rawFieldRule.OutboundTag,
+		rule.TargetTag = &router.RoutingRule_OutboundTag{
+			OutboundTag: rawFieldRule.OutboundTag,
 		}
 	case len(rawFieldRule.BalancerTag) > 0:
 		rule.TargetTag = &router.RoutingRule_BalancingTag{
@@ -627,6 +628,10 @@ func parseFieldRule(msg json.RawMessage) (*router.RoutingRule, error) {
 		rule.Attributes = rawFieldRule.Attributes
 	}
 
+	if len(rawFieldRule.Tag) > 0 {
+		rule.Tag = rawFieldRule.Tag
+	}
+
 	return rule, nil
 }
 
@@ -671,8 +676,8 @@ func parseChinaIPRule(data []byte) (*router.RoutingRule, error) {
 		return nil, newError("failed to load geoip:cn").Base(err)
 	}
 	return &router.RoutingRule{
-		TargetTag: &router.RoutingRule_Tag{
-			Tag: rawRule.OutboundTag,
+		TargetTag: &router.RoutingRule_OutboundTag{
+			OutboundTag: rawRule.OutboundTag,
 		},
 		Cidr: chinaIPs,
 	}, nil
@@ -689,8 +694,8 @@ func parseChinaSitesRule(data []byte) (*router.RoutingRule, error) {
 		return nil, newError("failed to load geosite:cn.").Base(err)
 	}
 	return &router.RoutingRule{
-		TargetTag: &router.RoutingRule_Tag{
-			Tag: rawRule.OutboundTag,
+		TargetTag: &router.RoutingRule_OutboundTag{
+			OutboundTag: rawRule.OutboundTag,
 		},
 		Domain: domains,
 	}, nil

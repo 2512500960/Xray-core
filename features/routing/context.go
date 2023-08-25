@@ -38,6 +38,9 @@ type Context interface {
 	// GetAttributes returns extra attributes from the conneciont content.
 	GetAttributes() map[string]string
 
+	// GetUser returns the user email from the connection content, if exists.
+	GetTag() string
+
 	// GetSkipDNSResolve returns a flag switch for weather skip dns resolve during route pick.
 	GetSkipDNSResolve() bool
 }

@@ -55,14 +55,14 @@ func TestReverseProxy(t *testing.T) {
 						Domain: []*router.Domain{
 							{Type: router.Domain_Full, Value: "test.example.com"},
 						},
-						TargetTag: &router.RoutingRule_Tag{
-							Tag: "portal",
+						TargetTag: &router.RoutingRule_OutboundTag{
+							OutboundTag: "portal",
 						},
 					},
 					{
 						InboundTag: []string{"external"},
-						TargetTag: &router.RoutingRule_Tag{
-							Tag: "portal",
+						TargetTag: &router.RoutingRule_OutboundTag{
+							OutboundTag: "portal",
 						},
 					},
 				},
@@ -123,14 +123,14 @@ func TestReverseProxy(t *testing.T) {
 						Domain: []*router.Domain{
 							{Type: router.Domain_Full, Value: "test.example.com"},
 						},
-						TargetTag: &router.RoutingRule_Tag{
-							Tag: "reverse",
+						TargetTag: &router.RoutingRule_OutboundTag{
+							OutboundTag: "reverse",
 						},
 					},
 					{
 						InboundTag: []string{"bridge"},
-						TargetTag: &router.RoutingRule_Tag{
-							Tag: "freedom",
+						TargetTag: &router.RoutingRule_OutboundTag{
+							OutboundTag: "freedom",
 						},
 					},
 				},
@@ -238,14 +238,14 @@ func TestReverseProxyLongRunning(t *testing.T) {
 						Domain: []*router.Domain{
 							{Type: router.Domain_Full, Value: "test.example.com"},
 						},
-						TargetTag: &router.RoutingRule_Tag{
-							Tag: "portal",
+						TargetTag: &router.RoutingRule_OutboundTag{
+							OutboundTag: "portal",
 						},
 					},
 					{
 						InboundTag: []string{"external"},
-						TargetTag: &router.RoutingRule_Tag{
-							Tag: "portal",
+						TargetTag: &router.RoutingRule_OutboundTag{
+							OutboundTag: "portal",
 						},
 					},
 				},
@@ -320,14 +320,14 @@ func TestReverseProxyLongRunning(t *testing.T) {
 						Domain: []*router.Domain{
 							{Type: router.Domain_Full, Value: "test.example.com"},
 						},
-						TargetTag: &router.RoutingRule_Tag{
-							Tag: "reverse",
+						TargetTag: &router.RoutingRule_OutboundTag{
+							OutboundTag: "reverse",
 						},
 					},
 					{
 						InboundTag: []string{"bridge"},
-						TargetTag: &router.RoutingRule_Tag{
-							Tag: "freedom",
+						TargetTag: &router.RoutingRule_OutboundTag{
+							OutboundTag: "freedom",
 						},
 					},
 				},

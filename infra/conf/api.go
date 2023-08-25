@@ -8,6 +8,7 @@ import (
 	observatoryservice "github.com/xtls/xray-core/app/observatory/command"
 	handlerservice "github.com/xtls/xray-core/app/proxyman/command"
 	reverseservice "github.com/xtls/xray-core/app/reverse/command"
+	routingservice "github.com/xtls/xray-core/app/router/command"
 	statsservice "github.com/xtls/xray-core/app/stats/command"
 	"github.com/xtls/xray-core/common/serial"
 )
@@ -22,13 +23,15 @@ func (c *APIConfig) Build() (*commander.Config, error) {
 		return nil, newError("API tag can't be empty.")
 	}
 
-	services := make([]*serial.TypedMessage, 0, 20)
+	services := make([]*serial.TypedMessage, 0, 24)
 	for _, s := range c.Services {
 		switch strings.ToLower(s) {
 		case "reflectionservice":
 			services = append(services, serial.ToTypedMessage(&commander.ReflectionConfig{}))
 		case "handlerservice":
 			services = append(services, serial.ToTypedMessage(&handlerservice.Config{}))
+		case "routingservice":
+			services = append(services, serial.ToTypedMessage(&routingservice.Config{}))
 		case "reverseservice":
 			services = append(services, serial.ToTypedMessage(&reverseservice.Config{}))
 		case "loggerservice":

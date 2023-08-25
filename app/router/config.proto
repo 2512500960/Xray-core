@@ -73,7 +73,7 @@ message GeoSiteList {
 message RoutingRule {
   oneof target_tag {
     // Tag of outbound that this rule is pointing to.
-    string tag = 1;
+    string outbound_tag = 1;
 
     // Tag of routing balancer.
     string balancing_tag = 12;
@@ -122,6 +122,7 @@ message RoutingRule {
   map<string, string> attributes = 15;
 
   string domain_matcher = 17;
+  string tag = 18;
 }
 
 message BalancingRule {
