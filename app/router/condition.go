@@ -2,6 +2,7 @@ package router
 
 import (
 	"os"
+	"regexp"
 	"strings"
 
 	"github.com/xtls/xray-core/common/net"
@@ -44,7 +45,7 @@ func (v *ConditionChan) RestoreRoutingRule() interface{} {
 		switch condition.(type) {
 		case *AttributeMatcher:
 			{
-				rule.Attributes = cond.(string)
+				rule.Attributes = cond.(map[string]string)
 			}
 		case *DomainMatcher:
 			{

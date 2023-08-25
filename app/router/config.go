@@ -1,6 +1,7 @@
 package router
 
 import (
+	"fmt"
 	"regexp"
 	"strings"
 
@@ -168,10 +169,14 @@ func (rr *RoutingRule) BuildCondition() (Condition, error) {
 
 	if len(rr.Attributes) > 0 {
 		configuredKeys := make(map[string]*regexp.Regexp)
+		code_strings := make([]string, 0)
+
 		for key, value := range rr.Attributes {
 			configuredKeys[strings.ToLower(key)] = regexp.MustCompile(value)
+			code_strings = append(code_strings, fmt.Sprintf("%s:%s", key, value))
 		}
-		conds.Add(&AttributeMatcher{configuredKeys})
+
+		conds.Add(&AttributeMatcher{configuredKeys, strings.Join(code_strings, ",")})
 	}
 
 	if conds.Len() == 0 {

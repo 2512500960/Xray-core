@@ -2,6 +2,7 @@ package routing
 
 import (
 	"context"
+
 	"github.com/xtls/xray-core/common"
 	"github.com/xtls/xray-core/features"
 	"github.com/xtls/xray-core/features/outbound"

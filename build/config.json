@@ -1,7 +1,7 @@
 {
   "api": {
     "tag": "api",
-    "services": ["HandlerService", "LoggerService", "StatsService","ReflectionService","ReverseService"]
+    "services": ["HandlerService", "LoggerService", "StatsService","ReflectionService","ReverseService","RoutingService"]
   },
   "stats": {},
   "inbounds": [

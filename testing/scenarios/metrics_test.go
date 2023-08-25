@@ -39,8 +39,8 @@ func TestMetrics(t *testing.T) {
 				Rule: []*router.RoutingRule{
 					{
 						InboundTag: []string{"metrics_in"},
-						TargetTag: &router.RoutingRule_Tag{
-							Tag: "metrics_out",
+						TargetTag: &router.RoutingRule_OutboundTag{
+							OutboundTag: "metrics_out",
 						},
 					},
 				},
