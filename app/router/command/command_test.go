@@ -445,7 +445,7 @@ func TestServiceAddRoutingRule(t *testing.T) {
 	r := new(router.Router)
 	mockCtl := gomock.NewController(t)
 	defer mockCtl.Finish()
-	common.Must(r.Init(&router.Config{}, mocks.NewDNSClient(mockCtl), mocks.NewOutboundManager(mockCtl)))
+	common.Must(r.Init(context.TODO(), &router.Config{}, mocks.NewDNSClient(mockCtl), mocks.NewOutboundManager(mockCtl)))
 
 	lis := bufconn.Listen(1024 * 1024)
 	bufDialer := func(context.Context, string) (net.Conn, error) {
@@ -620,7 +620,7 @@ func TestServiceAlterRoutingRule(t *testing.T) {
 	r := new(router.Router)
 	mockCtl := gomock.NewController(t)
 	defer mockCtl.Finish()
-	common.Must(r.Init(&router.Config{
+	common.Must(r.Init(context.TODO(), &router.Config{
 		Rule: []*router.RoutingRule{
 			{
 				InboundTag: []string{"in"},
@@ -862,7 +862,7 @@ func TestServiceRemoveRoutingRule(t *testing.T) {
 	r := new(router.Router)
 	mockCtl := gomock.NewController(t)
 	defer mockCtl.Finish()
-	common.Must(r.Init(&router.Config{
+	common.Must(r.Init(context.TODO(), &router.Config{
 		Rule: []*router.RoutingRule{
 			{
 				InboundTag: []string{"in"},

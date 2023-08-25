@@ -597,7 +597,7 @@ func TestConditionChan_RestoreCondition(t *testing.T) {
 		UserEmail:      []string{"love@xray.com"},
 		InboundTag:     []string{"tag-vmess"},
 		Protocol:       []string{"http", "tls", "bittorrent"},
-		Attributes:     "attrs[':method'] == 'GET'",
+		Attributes:     map[string]string{":method": "GET"},
 		Tag:            "test",
 	}
 
@@ -654,8 +654,31 @@ func TestConditionChan_RestoreCondition(t *testing.T) {
 		return
 	}
 
-	if rule.Attributes != rr.Attributes {
+	if len(rule.Attributes) != len(rr.Attributes) {
+		t.Fatal("The Attributes's lenth are different")
+		return
+	}
+
+	if !mapsEqual(rule.Attributes, rr.Attributes) {
 		t.Fatal("The Attributes are different")
 		return
 	}
+}
+
+func mapsEqual(map1, map2 map[string]string) bool {
+	if len(map1) != len(map2) {
+		return false
+	}
+
+	for key, value := range map1 {
+		if map2Value, ok := map2[key]; ok {
+			if map2Value != value {
+				return false
+			}
+		} else {
+			return false
+		}
+	}
+
+	return true
 }

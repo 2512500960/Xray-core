@@ -7,11 +7,10 @@ import (
 	"time"
 
 	"github.com/google/go-cmp/cmp"
-	"golang.org/x/sync/errgroup"
-
 	"github.com/xtls/xray-core/common"
 	"github.com/xtls/xray-core/common/buf"
 	. "github.com/xtls/xray-core/transport/pipe"
+	"golang.org/x/sync/errgroup"
 )
 
 func TestPipeReadWrite(t *testing.T) {

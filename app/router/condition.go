@@ -394,8 +394,6 @@ func (m *ProtocolMatcher) RestoreRoutingRule() interface{} {
 
 type AttributeMatcher struct {
 	configuredKeys map[string]*regexp.Regexp
-	// code routing API requires this backup.
-	code string
 }
 
 // Match implements attributes matching.
@@ -424,5 +422,9 @@ func (m *AttributeMatcher) Apply(ctx routing.Context) bool {
 
 // RestoreRoutingRule Restore implements Condition.
 func (m *AttributeMatcher) RestoreRoutingRule() interface{} {
-	return m.code
+	source_regex_strings := make(map[string]string)
+	for k, v := range m.configuredKeys {
+		source_regex_strings[k] = v.String()
+	}
+	return source_regex_strings
 }

@@ -26,3 +26,6 @@ errorgen
 !common/errors/errorgen/
 *.dat
 .vscode
+
+# resources
+resources

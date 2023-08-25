@@ -218,7 +218,7 @@ func TestRouter_AddRoutingRule(t *testing.T) {
 	mockHs := mocks.NewOutboundHandlerSelector(mockCtl)
 
 	r := new(Router)
-	common.Must(r.Init(config, mockDNS, &mockOutboundManager{
+	common.Must(r.Init(context.TODO(), config, mockDNS, &mockOutboundManager{
 		Manager:         mockOhm,
 		HandlerSelector: mockHs,
 	}))
@@ -265,7 +265,7 @@ func TestRouter_AlterRoutingRule(t *testing.T) {
 	mockHs := mocks.NewOutboundHandlerSelector(mockCtl)
 
 	r := new(Router)
-	common.Must(r.Init(config, mockDNS, &mockOutboundManager{
+	common.Must(r.Init(context.TODO(), config, mockDNS, &mockOutboundManager{
 		Manager:         mockOhm,
 		HandlerSelector: mockHs,
 	}))
@@ -324,7 +324,7 @@ func TestRouter_RemoveRoutingRule(t *testing.T) {
 	mockHs := mocks.NewOutboundHandlerSelector(mockCtl)
 
 	r := new(Router)
-	common.Must(r.Init(config, mockDNS, &mockOutboundManager{
+	common.Must(r.Init(context.TODO(), config, mockDNS, &mockOutboundManager{
 		Manager:         mockOhm,
 		HandlerSelector: mockHs,
 	}))
@@ -350,7 +350,7 @@ func TestRouter_SetRules(t *testing.T) {
 	mockHs := mocks.NewOutboundHandlerSelector(mockCtl)
 
 	r := new(Router)
-	common.Must(r.Init(config, mockDNS, &mockOutboundManager{
+	common.Must(r.Init(context.TODO(), config, mockDNS, &mockOutboundManager{
 		Manager:         mockOhm,
 		HandlerSelector: mockHs,
 	}))
@@ -391,7 +391,7 @@ func TestRouter_GetRules(t *testing.T) {
 	mockHs := mocks.NewOutboundHandlerSelector(mockCtl)
 
 	r := new(Router)
-	common.Must(r.Init(config, mockDNS, &mockOutboundManager{
+	common.Must(r.Init(context.TODO(), config, mockDNS, &mockOutboundManager{
 		Manager:         mockOhm,
 		HandlerSelector: mockHs,
 	}))
@@ -433,7 +433,7 @@ func TestRouter_GetRule(t *testing.T) {
 	mockHs := mocks.NewOutboundHandlerSelector(mockCtl)
 
 	r := new(Router)
-	common.Must(r.Init(config, mockDNS, &mockOutboundManager{
+	common.Must(r.Init(context.TODO(), config, mockDNS, &mockOutboundManager{
 		Manager:         mockOhm,
 		HandlerSelector: mockHs,
 	}))
