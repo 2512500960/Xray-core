@@ -38,7 +38,7 @@ type ReverseServiceClient interface {
 	GetBridges(ctx context.Context, in *GetBridgesRequest, opts ...grpc.CallOption) (*GetBridgesResponse, error)
 	GetBridge(ctx context.Context, in *GetBridgeRequest, opts ...grpc.CallOption) (*GetBridgeResponse, error)
 	AddPortal(ctx context.Context, in *AddPortalRequest, opts ...grpc.CallOption) (*AddPortalResponse, error)
-	RemovePortal(ctx context.Context, in *RemovePortalRequest, opts ...grpc.CallOption) (*RemovePortalResponse, error)
+	RemovePortal(ctx context.Context, in *C, opts ...grpc.CallOption) (*RemovePortalResponse, error)
 	GetPortals(ctx context.Context, in *GetPortalsRequest, opts ...grpc.CallOption) (*GetPortalsResponse, error)
 	GetPortal(ctx context.Context, in *GetPortalRequest, opts ...grpc.CallOption) (*GetPortalResponse, error)
 }
