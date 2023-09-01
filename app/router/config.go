@@ -37,11 +37,11 @@ func (r *Rule) RestoreRoutingRule() interface{} {
 	rule.DomainMatcher = r.DomainMatcher
 	if r.Balancer != nil {
 		rule.TargetTag = &RoutingRule_BalancingTag{
-			BalancingTag: rule.Tag,
+			BalancingTag: r.TargetTag,
 		}
 	} else {
 		rule.TargetTag = &RoutingRule_OutboundTag{
-			OutboundTag: rule.Tag,
+			OutboundTag: r.TargetTag,
 		}
 	}
 

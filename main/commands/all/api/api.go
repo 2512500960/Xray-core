@@ -19,5 +19,11 @@ var CmdAPI = &base.Command{
 		cmdAddOutbounds,
 		cmdRemoveInbounds,
 		cmdRemoveOutbounds,
+		cmdGetRouterRules,
+		cmdGetReversePortals,
+		cmdAddReversePortal,
+		cmdAddRouterRule,
+		cmdDelReversePortal,
+		cmdDelRouterRule,
 	},
 }

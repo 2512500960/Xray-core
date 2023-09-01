@@ -1,0 +1,65 @@
+{
+  "api": {
+    "tag": "api",
+    "services": ["HandlerService", "LoggerService", "StatsService","ReflectionService","ReverseService","RoutingService"]
+  },
+  "stats": {},
+  "inbounds": [
+    {
+      "listen": "127.0.0.1",
+      "protocol": "dokodemo-door",
+      "port": 10085,
+      "settings": {
+        "port": 10086,
+        "address": "127.0.0.1",
+        "network": "tcp",
+
+        "followRedirect": false
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "streamSettings": {
+        "network": "tcp",
+        "wsSettings": {}
+      },
+      "protocol": "vmess",
+      "settings": {
+        "vnext": [
+          {
+            "address": "172.16.28.178",
+            "users": [
+              {
+                "alterId": 0,
+                "encryption": "auto",
+                "flow": "",
+                "id": "70dc2198-5456-11ed-bdc3-0242ac120162",
+                "security": "auto",
+                "email": "t@t.tt"
+              }
+            ],
+            "port": 30010
+          }
+        ]
+      },
+      "mux": {
+        "enabled": false,
+        "concurrency": 8
+      },
+      "tag": "default",
+      "sendThrough": "0.0.0.0"
+    }
+  ],
+  "routing": {
+    "rules": [
+      {
+        "inboundTag": [
+          "api"
+        ],
+        "outboundTag": "api",
+        "type": "field"
+      }
+    ]
+  }
+}

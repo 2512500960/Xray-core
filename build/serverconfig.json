@@ -1,4 +1,5 @@
 {
+
   "api": {
     "tag": "api",
     "services": ["HandlerService", "LoggerService", "StatsService","ReflectionService","ReverseService","RoutingService"]
@@ -7,12 +8,25 @@
   "inbounds": [
     {
       "listen": "127.0.0.1",
-      "port": 10085,
+      "port": 10086,
       "protocol": "dokodemo-door",
       "settings": {
         "address": "127.0.0.1"
       },
       "tag": "api"
+    },
+    {
+      "port": 30010,
+      "listen":"0.0.0.0",
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "70dc2198-5456-11ed-bdc3-0242ac120162",
+            "alterId": 0
+          }
+        ]
+      }
     }
   ],
   "routing": {
