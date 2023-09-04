@@ -1,0 +1,2 @@
+'{"tag":"external_to_portal","type":"field","inboundTag":["external"],"outboundTag":"testtag"}'
+'{"tag":"external_to_portal","type":"field","inboundTag":["intercon"],"outboundTag":"testtag"}'

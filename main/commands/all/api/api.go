@@ -25,5 +25,6 @@ var CmdAPI = &base.Command{
 		cmdAddRouterRule,
 		cmdDelReversePortal,
 		cmdDelRouterRule,
+		cmdAddInbound,
 	},
 }

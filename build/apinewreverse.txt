@@ -1,0 +1,8 @@
+local_port=20015
+local_ip=172.16.28.70
+remote_ip=0.0.0.0
+remote_port=30015
+portalname=ptl$(remote_port)
+domain=dm$(remote_port).xray.com
+
+apiserver=127.0.0.1:10085

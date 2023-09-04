@@ -2,6 +2,7 @@ package core
 
 import (
 	"context"
+	"github.com/xtls/xray-core/features/reverse"
 	"os"
 	"reflect"
 	"sync"
@@ -214,6 +215,7 @@ func initInstanceWithConfig(config *Config, server *Instance) (bool, error) {
 		{policy.ManagerType(), policy.DefaultManager{}},
 		{routing.RouterType(), routing.DefaultRouter{}},
 		{stats.ManagerType(), stats.NoopManager{}},
+		{reverse.ManagerType(), reverse.NoopManager{}},
 	}
 
 	for _, f := range essentialFeatures {

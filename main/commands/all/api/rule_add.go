@@ -29,17 +29,21 @@ Example:
 
 func executeAddRouterRule(cmd *base.Command, args []string) {
 	setSharedFlags(cmd)
-	cmd.Flag.Parse(args)
+
 	config_json := cmd.Flag.String("rule", "", "")
+	cmd.Flag.Parse(args)
 	conn, ctx, close := dialAPIServer()
 	defer close()
-	var rule, _ = conf.ParseRule(json.RawMessage(*config_json))
+	var rule, err = conf.ParseRule(json.RawMessage(*config_json))
+	if err != nil {
+		base.Fatalf("failed to parse rule: %s", err)
+	}
 	client := routerService.NewRoutingServiceClient(conn)
 	r := &routerService.AddRoutingRuleRequest{RoutingRule: rule}
 
 	resp, err := client.AddRule(ctx, r)
 	if err != nil {
-		base.Fatalf("failed to get rule: %s", err)
+		base.Fatalf("failed to add rule: %s", err)
 	}
 	showJSONResponse(resp)
 }

@@ -8,7 +8,7 @@ import (
 var cmdDelRouterRule = &base.Command{
 	CustomFlags: true,
 	UsageLine:   "{{.Exec}} api delrouterule [--server=127.0.0.1:8080] -tag rule_tag",
-	Short:       "Get Router rules",
+	Short:       "Del Router rule",
 	Long: `
 Del Router rule from Xray.
 Arguments:
@@ -26,11 +26,11 @@ Example:
 
 func executeDelRouterRules(cmd *base.Command, args []string) {
 	setSharedFlags(cmd)
+	tag := cmd.Flag.String("tag", "", "")
 	cmd.Flag.Parse(args)
 
 	conn, ctx, close := dialAPIServer()
 	defer close()
-	tag := cmd.Flag.String("tag", "", "")
 	client := routerService.NewRoutingServiceClient(conn)
 	r := &routerService.RemoveRoutingRuleRequest{Tag: *tag}
 	resp, err := client.RemoveRule(ctx, r)

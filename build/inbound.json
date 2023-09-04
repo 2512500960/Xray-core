@@ -1,0 +1,14 @@
+{
+  "inbounds": [
+    {
+      "listen": "0.0.0.0",
+      "tag": "25125br_ptlin",
+      "port": 10080,
+      "protocol": "dokodemo-door",
+      "settings": {
+        "address": "127.0.0.1",
+        "network": "tcp"
+      }
+    }
+  ]
+}

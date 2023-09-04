@@ -95,7 +95,9 @@ func (s *service) Register(server *grpc.Server) {
 	common.Must(s.v.RequireFeatures(func(reverse reverse.Manager) {
 		m.reverse = reverse
 	}))
-
+	if m.reverse == nil {
+		return
+	}
 	RegisterReverseServiceServer(server, m)
 
 	// For compatibility purposes

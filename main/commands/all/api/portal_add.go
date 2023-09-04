@@ -29,13 +29,13 @@ Example:
 
 func executeAddReversePortal(cmd *base.Command, args []string) {
 	setSharedFlags(cmd)
+	tag := cmd.Flag.String("tag", "", "")
+	domain := cmd.Flag.String("domain", "", "")
 	cmd.Flag.Parse(args)
 
 	conn, ctx, close := dialAPIServer()
 	defer close()
 
-	tag := cmd.Flag.String("tag", "", "")
-	domain := cmd.Flag.String("domain", "", "")
 	client := reverseService.NewReverseServiceClient(conn)
 	r := &reverseService.AddPortalRequest{Config: &reverse.PortalConfig{Tag: *tag, Domain: *domain}}
 	resp, err := client.AddPortal(ctx, r)

@@ -1,11 +1,21 @@
 {
-  "api": {
-    "tag": "api",
-    "services": ["HandlerService", "LoggerService", "StatsService","ReflectionService","ReverseService","RoutingService"]
+  "log": {
+    "access": "",
+    "loglevel": "debug",
+    "error": ""
   },
   "stats": {},
+  "reverse": {
+    "bridges": [
+      {
+        "tag": "25125br",
+        "domain": "25125br.xray.com"
+      }
+    ]
+  },
   "inbounds": [
     {
+      "tag": "apibind",
       "listen": "127.0.0.1",
       "protocol": "dokodemo-door",
       "port": 10085,
@@ -13,8 +23,18 @@
         "port": 10086,
         "address": "127.0.0.1",
         "network": "tcp",
-
         "followRedirect": false
+      }
+    },
+    {
+      "tag": "httpproxy",
+      "listen": "127.0.0.1",
+      "protocol": "http",
+      "port": 1080,
+      "settings": {
+        "userLevel": 0,
+        "timeout": 0,
+        "allowTransparent": false
       }
     }
   ],
@@ -49,16 +69,72 @@
       },
       "tag": "default",
       "sendThrough": "0.0.0.0"
+    },
+    {
+      "streamSettings": {
+        "network": "tcp",
+        "wsSettings": {}
+      },
+      "protocol": "vmess",
+      "settings": {
+        "vnext": [
+          {
+            "address": "172.16.28.178",
+            "users": [
+              {
+                "alterId": 0,
+                "encryption": "auto",
+                "flow": "",
+                "id": "70dc2198-5456-11ed-bdc3-0242ac120162",
+                "security": "auto",
+                "email": "t@t.tt"
+              }
+            ],
+            "port": 30011
+          }
+        ]
+      },
+      "mux": {
+        "enabled": false,
+        "concurrency": 8
+      },
+      "tag": "interconn",
+      "sendThrough": "0.0.0.0"
+    },
+    {
+      "tag": "25125in",
+      "protocol": "freedom",
+      "settings": {
+        "redirect": "172.16.30.1:443"
+      }
     }
   ],
   "routing": {
     "rules": [
       {
+        "type": "field",
         "inboundTag": [
-          "api"
+          "25125br"
         ],
-        "outboundTag": "api",
-        "type": "field"
+        "domain": [
+          "full:25125br.xray.com"
+        ],
+        "outboundTag": "default"
+      },
+      {
+        "type": "field",
+        "inboundTag": [
+          "25125br"
+        ],
+        "outboundTag": "25125in"
+      },
+      {
+        "type": "field",
+        "tag": "defaultout",
+        "inboundTag": [
+          "httpproxy","apibind"
+        ],
+        "outboundTag": "default"
       }
     ]
   }

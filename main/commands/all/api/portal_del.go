@@ -26,12 +26,12 @@ Example:
 
 func executeDelReversePortal(cmd *base.Command, args []string) {
 	setSharedFlags(cmd)
+	tag := cmd.Flag.String("tag", "", "")
 	cmd.Flag.Parse(args)
 
 	conn, ctx, close := dialAPIServer()
 	defer close()
 
-	tag := cmd.Flag.String("tag", "", "")
 	client := reverseService.NewReverseServiceClient(conn)
 	r := &reverseService.RemovePortalRequest{Tag: *tag}
 	resp, err := client.RemovePortal(ctx, r)
