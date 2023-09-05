@@ -169,8 +169,13 @@ func (r *Router) AddRule(ctx context.Context, index int32, routingRule interface
 	} else {
 		// Insert to the specified location
 		temp := make([]*Rule, 0, len(r.rules)+1)
-		temp = append(r.rules[:index], rule)
-		temp = append(temp, r.rules[index:]...)
+		for i, j := range r.rules {
+			if i == int(index) {
+				temp = append(temp, rule)
+			}
+			temp = append(temp, j)
+
+		}
 		r.rules = temp
 	}
 

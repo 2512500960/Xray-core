@@ -20,6 +20,10 @@
       {
         "tag": "noobportal",
         "domain": "noobportaldomain.com"
+      },
+      {
+        "tag": "c5e66ac_ptl",
+        "domain": "c5e66ac.xray.com"
       }
     ]
   },
@@ -31,6 +35,18 @@
     }
   ],
   "inbounds": [
+    {
+      "listen": "0.0.0.0",
+      "tag": "c5e66ac_ptlin",
+      "port": 20005,
+      "protocol": "dokodemo-door",
+      "settings": {
+        "address": "127.0.0.1",
+        "network": [
+          "tcp"
+        ]
+      }
+    },
     {
       "listen": "127.0.0.1",
       "port": 10086,
@@ -63,6 +79,25 @@
         ],
         "outboundTag": "api",
         "type": "field"
+      },
+      {
+        "type": "field",
+        "tag": "c5e66ac_in2portal",
+        "inboundTag": [
+          "c5e66ac_ptlin"
+        ],
+        "outboundTag": "c5e66ac_ptl"
+      },
+      {
+        "type": "field",
+        "tag": "c5e66ac_tun2portal",
+        "inboundTag": [
+          "maintunnel"
+        ],
+        "domain":[
+          "full:c5e66ac.xray.com"
+        ],
+        "outboundTag": "c5e66ac_ptl"
       },{
         "type": "field",
         "tag": "defaultfreeout",
