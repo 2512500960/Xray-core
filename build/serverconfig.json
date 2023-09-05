@@ -16,7 +16,6 @@
       "tag": "api"
     },
     {
-      "tag": "maintunnel",
       "port": 30010,
       "listen":"0.0.0.0",
       "protocol": "vmess",
@@ -30,12 +29,6 @@
       }
     }
   ],
-  "outbounds": [
-    {
-      "protocol": "freedom",
-      "tag": "freeout"
-    }
-  ],
   "routing": {
     "rules": [
       {
@@ -44,6 +37,11 @@
         ],
         "outboundTag": "api",
         "type": "field"
+      },{
+        "type": "field",
+        "tag": "defaultfreeout",
+        "inboundTag": ["maintunnel"],
+        "outboundTag": "freeout"
       }
     ]
   }
