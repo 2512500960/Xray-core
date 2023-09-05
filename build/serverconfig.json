@@ -1,10 +1,20 @@
 {
-
+  "log": {
+    "access": "",
+    "loglevel": "debug",
+    "error": ""
+  },
   "api": {
     "tag": "api",
     "services": ["HandlerService", "LoggerService", "StatsService","ReflectionService","ReverseService","RoutingService"]
   },
   "stats": {},
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "tag": "freeout"
+    }
+  ],
   "inbounds": [
     {
       "listen": "127.0.0.1",

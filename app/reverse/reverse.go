@@ -284,12 +284,12 @@ func (r *Reverse) RemovePortal(ctx context.Context, tag string) error {
 
 // GetPortals Implement the Manager interface.
 func (r *Reverse) GetPortals(ctx context.Context) (interface{}, error) {
+	configs := make([]*PortalConfig, 0)
 	if len(r.portals) == 0 {
 		err := newError("This bridges has no elements")
 		err.WriteToLog(session.ExportIDToError(ctx))
-		return nil, err
+		return configs, err
 	}
-	configs := make([]*PortalConfig, 0)
 	for _, portal := range r.portals {
 		configs = append(configs, &PortalConfig{
 			Tag:    portal.tag,

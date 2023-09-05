@@ -9,7 +9,7 @@
     "bridges": [
       {
         "tag": "25125br",
-        "domain": "25125br.xray.com"
+        "domain": "c5e66ac.xray.com"
       }
     ]
   },
@@ -105,7 +105,7 @@
       "tag": "25125in",
       "protocol": "freedom",
       "settings": {
-        "redirect": "172.16.30.1:443"
+        "redirect": "172.17.0.1:80"
       }
     }
   ],
@@ -117,7 +117,7 @@
           "25125br"
         ],
         "domain": [
-          "full:25125br.xray.com"
+          "full:c5e66ac.xray.com"
         ],
         "outboundTag": "default"
       },
@@ -127,14 +127,6 @@
           "25125br"
         ],
         "outboundTag": "25125in"
-      },
-      {
-        "type": "field",
-        "tag": "defaultout",
-        "inboundTag": [
-          "httpproxy","apibind"
-        ],
-        "outboundTag": "default"
       }
     ]
   }
